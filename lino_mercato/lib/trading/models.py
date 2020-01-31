@@ -34,11 +34,11 @@ class Need(UserAuthored):
     company = dd.ForeignKey("contacts.Company", verbose_name=_("Future employer"))
 
 class Offers(dd.Table):
-    params_layout = "product worker"
+    # params_layout = "product worker user"
     model = "trading.Offer"
 
 class Needs(dd.Table):
-    params_layout = "product company"
+    # params_layout = "product company user"
     model = "trading.Need"
 
 class OffersByWorker(Offers):

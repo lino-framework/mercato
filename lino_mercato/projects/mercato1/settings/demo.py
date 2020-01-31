@@ -1,7 +1,7 @@
 import datetime
 from ..settings import *
 class Site(Site):
-    languages = "de fr en"
+    # languages = "de fr en"
     is_demo_site = True
     the_demo_date = datetime.date(2017, 3, 12)
 #    default_ui = 'lino_react.react'
@@ -12,7 +12,7 @@ class Site(Site):
     #     self.plugins.ledger.configure(start_year=2017)
     #     # print "20151217 a", hash(self.plugins.ledger)
 
-    
+
 SITE = Site(globals())
 
 DEBUG = True
