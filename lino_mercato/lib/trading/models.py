@@ -4,9 +4,11 @@
 
 
 from lino.api import dd, rt, _
+from lino.core.utils import ParameterPanel
 
 from lino_xl.lib.contacts.models import *
 from lino.modlib.users.mixins import UserAuthored
+from .roles import CompanyUser, CandidatUser
 
 
 
@@ -36,10 +38,43 @@ class Need(UserAuthored):
 class Offers(dd.Table):
     # params_layout = "product worker user"
     model = "trading.Offer"
-
+    parameters = ParameterPanel(
+        product=dd.ForeignKey("products.Product"),
+        company=dd.ForeignKey("contacts.Company",verbose_name=_("Future employer")),
+    )
+    #required_roles = dd.login_required(CandidatUser)
+    insert_layout = """
+    product worker
+    user
+    """
 class Needs(dd.Table):
     # params_layout = "product company user"
     model = "trading.Need"
+    #required_roles = dd.login_required(CompanyUser)
+    parameters = ParameterPanel(
+        product=dd.ForeignKey("products.Product"),
+        worker=dd.ForeignKey("contacts.Company",verbose_name=_("Future employer")),
+    )
+    insert_layout = """
+    product company
+    user
+    """
+
+class MyOffers(Offers):
+    label = _("My offers")
+    @classmethod
+    def param_defaults(self, ar, **kw):
+        kw = super(Offers, self).param_defaults(ar, **kw)
+        kw.update(user=ar.get_user())
+        return kw
+
+class MyNeeds(Needs):
+    label = _("My needs")
+    @classmethod
+    def param_defaults(self, ar, **kw):
+        kw = super(Needs, self).param_defaults(ar, **kw)
+        kw.update(user=ar.get_user())
+        return kw
 
 class OffersByWorker(Offers):
     master_key = "worker"

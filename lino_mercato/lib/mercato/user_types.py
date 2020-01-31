@@ -40,6 +40,11 @@ class Worker(SiteUser, ContactsUser, OfficeUser,
                 ProductsUser):
     pass
 
+class Company(SiteUser, ContactsUser, OfficeUser,
+                GuestOperator,
+                SepaUser, OrdersStaff, ExcerptsUser,
+                ProductsUser):
+    pass
 
 class SiteAdmin(SiteAdmin, ContactsStaff, OfficeStaff,
                 GuestOperator, LedgerStaff, SepaStaff, OrdersStaff,
@@ -53,5 +58,6 @@ add = UserTypes.add_item
 add('000', _("Anonymous"), UserRole, name='anonymous', readonly=True)
 add('100', _("Secretary"), Secretary, name="secretary")
 add('200', _("Worker"), Worker, name="worker")
+add('300', _("Company"), Worker, name="Company")
 add('900', _("Administrator"), SiteAdmin, name='admin')
 
