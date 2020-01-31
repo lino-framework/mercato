@@ -29,17 +29,17 @@ class Plugin(ad.Plugin):
     def setup_main_menu(self, site, user_type, m):
         mg = site.plugins.contacts
         m = m.add_menu(mg.app_label, mg.verbose_name)
-        m.add_action('mercato.Clients')
+        #m.add_action('mercato.Clients')
 
     def setup_config_menu(self, site, user_type, m):
         mg = site.plugins.contacts
         m = m.add_menu(mg.app_label, mg.verbose_name)
-        m.add_action('mercato.LifeModes')
+        #m.add_action('mercato.LifeModes')
 
     def setup_explorer_menu(self, site, user_type, m):
         mg = site.plugins.contacts
         m = m.add_menu(mg.app_label, mg.verbose_name)
-        m.add_action('mercato.AllClients')
+        #m.add_action('mercato.AllClients')
 
     def walk_invoice_entries(self, obj):
         if obj.partner is None or obj.partner.city_id is None:

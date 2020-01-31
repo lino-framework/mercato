@@ -88,7 +88,7 @@ dd.update_field(Person, 'first_name', blank=False)
 # class PersonDetail(PersonDetail, PartnerDetail):
 class PersonDetail(PartnerDetail):
 
-    main = "general contact misc cal_tab"
+    main = "general contact misc"
 
     general = dd.Panel("""
     overview:20 general2:40 #general3:40
@@ -151,8 +151,8 @@ class WorkerDetail(PersonDetail):
     main = "general contact"
 
     general = dd.Panel("""
-    overview:20 cal_panel:40
-    trading.OffersByPerson
+    overview:20
+    trading.OffersByWorker
     """, label=_("General"))
 
 
