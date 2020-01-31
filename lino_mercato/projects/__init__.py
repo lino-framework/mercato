@@ -1,14 +1,13 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2012-2018 Rumma & Ko Ltd
+# Copyright 2020 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
-"""A series of ready-to-use Lino Presto variants.
+"""A series of ready-to-use Lino Mercato demo projects.
 
 .. autosummary::
    :toctree:
 
-   noereth
+   mercato1
 
 
 """
-

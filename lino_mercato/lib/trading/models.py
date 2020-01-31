@@ -1,38 +1,55 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2013-2020 Rumma & Ko Ltd
+# Copyright 2020 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
 
 from lino.api import dd, rt, _
 
 from lino_xl.lib.contacts.models import *
-from lino_xl.lib.products.models import Product
-# from lino_xl.lib.courses.mixins import Enrollable
-from lino_xl.lib.beid.mixins import SSIN
-from lino_xl.lib.calview.ui import WeeklyColumns
-# from lino_xl.lib.calview.ui import WeeklyView
-# from lino_xl.lib.calview.ui import WeeklyPlanner
-from lino_xl.lib.calview.mixins import Plannable
-from lino.modlib.printing.actions import DirectPrintAction
-from lino.mixins.periods import Monthly
+from lino.modlib.users.mixins import UserAuthored
 
 
 
-class Offer(Product):
-
+class Offer(UserAuthored):
+    # what the person offers
     class Meta:
-        app_label = 'offers'
-        verbose_name = _("Offers")
+        app_label = 'trading'
+        verbose_name = _("Offer")
         verbose_name_plural = _("Offers")
         abstract = dd.is_abstract_model(__name__, 'Offer')
 
+    product = dd.ForeignKey("products.Product")
+    worker = dd.ForeignKey("contacts.Worker", verbose_name=_("Future employee"))
 
-class Demand(Product):
 
+class Need(UserAuthored):
+    # what the employer needs
     class Meta:
-        app_label = 'offers'
-        verbose_name = _("Offers")
-        verbose_name_plural = _("Offers")
+        app_label = 'trading'
+        verbose_name = _("Need")
+        verbose_name_plural = _("Needs")
         abstract = dd.is_abstract_model(__name__, 'Offer')
 
+    product = dd.ForeignKey("products.Product")
+    company = dd.ForeignKey("contacts.Company", verbose_name=_("Future employer"))
 
+class Offers(dd.Table):
+    params_layout = "user"
+    model = "trading.Offer"
+
+class Needs(dd.Table):
+    params_layout = "user"
+    model = "trading.Need"
+
+class OffersByWorker(Offers):
+    master_key = "worker"
+
+class OffersByProduct(Offers):
+    master_key = "product"
+
+
+class NeedsByCompany(Needs):
+    master_key = "company"
+
+class NeedsByProduct(Needs):
+    master_key = "product"

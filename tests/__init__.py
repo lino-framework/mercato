@@ -10,7 +10,5 @@ class PackagesTests(TestCase):
 
 
 class DemoTests(TestCase):
-    def test_demoTrading(self):
-        self.run_django_manage_test("lino_mercato/projects/demoTrading")
-    
-
+    def test_demo(self):
+        self.run_django_manage_test("lino_mercato/projects/mercato1")
