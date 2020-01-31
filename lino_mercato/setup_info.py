@@ -73,6 +73,9 @@ lino_mercato
 lino_mercato.lib
 lino_mercato.lib.trading
 lino_mercato.lib.mercato
+lino_mercato.projects
+lino_mercato.projects.mercato1
+lino_mercato.projects.mercato1.settings
 """.splitlines() if n])
 
 SETUP_INFO.update(message_extractors={

@@ -28,17 +28,17 @@ class Need(UserAuthored):
         app_label = 'trading'
         verbose_name = _("Need")
         verbose_name_plural = _("Needs")
-        abstract = dd.is_abstract_model(__name__, 'Offer')
+        abstract = dd.is_abstract_model(__name__, 'Need')
 
     product = dd.ForeignKey("products.Product")
     company = dd.ForeignKey("contacts.Company", verbose_name=_("Future employer"))
 
 class Offers(dd.Table):
-    params_layout = "user"
+    params_layout = "product worker"
     model = "trading.Offer"
 
 class Needs(dd.Table):
-    params_layout = "user"
+    params_layout = "product company"
     model = "trading.Need"
 
 class OffersByWorker(Offers):

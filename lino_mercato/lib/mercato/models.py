@@ -8,9 +8,6 @@ from django.conf import settings
 
 from lino.utils import join_elems
 from etgen.html import E
-from lino.core.fields import IncompleteDateField
-from lino.mixins import CreatedModified, BabelDesignated
-from lino.core.roles import Explorer
 
 
 

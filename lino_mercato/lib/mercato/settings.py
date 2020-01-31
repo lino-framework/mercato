@@ -8,7 +8,6 @@ from lino.api import _
 class Site(Site):
     verbose_name = "Lino Mercato"
     url = "http://mercato.lino-framework.org"
-
     languages = 'en et'
 
     def get_installed_apps(self):
