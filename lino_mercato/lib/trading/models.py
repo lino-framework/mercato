@@ -5,14 +5,21 @@
 
 from lino.api import dd, rt, _
 from lino.core.utils import ParameterPanel
-
+from lino.mixins.periods import DateRange
 from lino_xl.lib.contacts.models import *
 from lino.modlib.users.mixins import UserAuthored
 from .roles import CompanyUser, CandidatUser
 
 
+class Annoucement(UserAuthored, DateRange):
+    class Meta:
+        abstract = True
 
-class Offer(UserAuthored):
+    heading = dd.CharField(_("Heading"), max_length=200, blank=True)
+    description = dd.RichTextField(_("Description"), blank=True)
+
+
+class Offer(Annoucement):
     # what the person offers
     class Meta:
         app_label = 'trading'
@@ -21,10 +28,10 @@ class Offer(UserAuthored):
         abstract = dd.is_abstract_model(__name__, 'Offer')
 
     product = dd.ForeignKey("products.Product")
-    worker = dd.ForeignKey("contacts.Worker", verbose_name=_("Future employee"))
+    worker = dd.ForeignKey("contacts.Worker", help_text=_("This is the future employee"))
 
 
-class Need(UserAuthored):
+class Need(Annoucement):
     # what the employer needs
     class Meta:
         app_label = 'trading'
@@ -33,7 +40,7 @@ class Need(UserAuthored):
         abstract = dd.is_abstract_model(__name__, 'Need')
 
     product = dd.ForeignKey("products.Product")
-    company = dd.ForeignKey("contacts.Company", verbose_name=_("Future employer"))
+    company = dd.ForeignKey("contacts.Company", help_text=_("This is the future employer"))
 
 class Offers(dd.Table):
     # params_layout = "product worker user"
@@ -43,6 +50,12 @@ class Offers(dd.Table):
         company=dd.ForeignKey("contacts.Company",verbose_name=_("Future employer")),
     )
     #required_roles = dd.login_required(CandidatUser)
+    detail_layout = """
+    start_date end_date id worker user
+    product
+    heading
+    description
+    """
     insert_layout = """
     product worker
     user
@@ -58,6 +71,12 @@ class Needs(dd.Table):
     insert_layout = """
     product company
     user
+    """
+    detail_layout = """
+    start_date end_date id company user
+    product
+    heading
+    description
     """
 
 class MyOffers(Offers):

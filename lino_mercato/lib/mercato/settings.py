@@ -10,6 +10,7 @@ class Site(Site):
     url = "http://mercato.lino-framework.org"
     languages = 'en et'
     demo_fixtures = 'std demo demo2'
+    user_types_module = "lino_mercato.lib.mercato.user_types"
 
     def get_installed_apps(self):
         yield super(Site, self).get_installed_apps()
