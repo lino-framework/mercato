@@ -6,6 +6,7 @@
 from lino.api import dd, rt, _
 
 from lino_xl.lib.contacts.models import *
+from lino_xl.lib.cv.mixins import BiographyOwner
 
 
 class Partner(Partner, mixins.CreatedModified):
@@ -88,21 +89,22 @@ dd.update_field(Person, 'first_name', blank=False)
 # class PersonDetail(PersonDetail, PartnerDetail):
 class PersonDetail(PartnerDetail):
 
-    main = "general contact misc"
+    main = "general #contact misc"
 
     general = dd.Panel("""
-    overview:20 general2:40 #general3:40
+    overview:20 general2:40 #general3:40 topics.InterestsByPartner:30
     contacts.RolesByPerson:20
     """, label=_("General"))
 
-    contact = dd.Panel("""
-    remarks:30
-    """, label=_("Contact"))
+    # contact = dd.Panel("""
+    # remarks:30
+    # """, label=_("Contact"))
 
     misc = dd.Panel("""
     url
     created modified
     # notes.NotesByPartner
+    remarks:30
     """, label=_("Miscellaneous"))
 
     general2 = """
@@ -138,7 +140,7 @@ gender email
 #     detail_layout = PersonDetail()
 
 
-class Worker(Person):
+class Worker(Person, BiographyOwner):
     class Meta:
         app_label = 'contacts'
         verbose_name = _("Worker")
@@ -151,9 +153,15 @@ class WorkerDetail(PersonDetail):
     main = "general contact"
 
     general = dd.Panel("""
-    overview:20
-    trading.OffersByWorker
+    overview:20 topics.InterestsByPartner:30
+    trading.OffersByWorker:50 cv.LanguageKnowledgesByPerson:20
     """, label=_("General"))
+
+    contact = dd.Panel("""
+    cv.TrainingsByPerson
+    cv.StudiesByPerson
+    cv.ExperiencesByPerson
+    """, label=_("Career"))
 
 
 
@@ -181,14 +189,15 @@ class CompanyDetail(PartnerDetail):
     main = "general contact misc"
 
     general = dd.Panel("""
-    overview:20 general2:40 general3:40
-    contacts.RolesByCompany
+    overview:20 general2:20 topics.InterestsByPartner:20
     trading.NeedsByCompany
     """, label=_("General"))
 
     general2 = """
-    prefix:20 name:40
-    type url
+    prefix:20
+    name:40
+    type
+    url
     """
 
     general3 = """
@@ -199,6 +208,7 @@ class CompanyDetail(PartnerDetail):
     """
 
     contact = dd.Panel("""
+    contacts.RolesByCompany:40 general3:40
     remarks:30
     """, label=_("Contact"))
 

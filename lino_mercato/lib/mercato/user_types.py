@@ -12,25 +12,27 @@ from lino.core.roles import UserRole, SiteAdmin, SiteUser, SiteStaff
 from lino_xl.lib.contacts.roles import ContactsUser, ContactsStaff
 from lino_xl.lib.excerpts.roles import ExcerptsUser, ExcerptsStaff
 from lino_xl.lib.products.roles import ProductsUser, ProductsStaff
+from lino_xl.lib.topics.roles import TopicsUser
+from lino_xl.lib.cv.roles import CareerUser, CareerStaff
 from lino.modlib.office.roles import OfficeStaff, OfficeUser
 
 
 class Secretary(SiteStaff, ContactsUser, OfficeUser,
-                ExcerptsUser, ProductsStaff):
+                ExcerptsUser, ProductsStaff, TopicsUser):
     pass
 
 
 class Worker(SiteUser, ContactsUser, OfficeUser,
-                ExcerptsUser, ProductsUser):
+                ExcerptsUser, ProductsUser, TopicsUser, CareerUser):
     pass
 
 class Company(SiteUser, ContactsUser, OfficeUser,
                 ExcerptsUser,
-                ProductsUser):
+                ProductsUser, TopicsUser, CareerUser):
     pass
 
 class SiteAdmin(SiteAdmin, ContactsStaff, OfficeStaff,
-                ExcerptsStaff, ProductsStaff):
+                ExcerptsStaff, ProductsStaff, TopicsUser, CareerStaff):
     pass
 
 UserTypes.clear()
