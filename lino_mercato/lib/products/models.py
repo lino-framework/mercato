@@ -16,8 +16,8 @@ add('100', _("Jobs"), 'default', table_name="products.Products")
 class ProductDetail(ProductDetail):
     # Make the sales_price visible
     main = """
-    id # cat 
+    id # cat
     name
     description
-    trading.NeedsByProduct trading.OffersByProduct
+    trading.NeedsByProduct
     """

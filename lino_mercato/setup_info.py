@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2015-2020 Rumma & Ko Ltd
+# Copyright 2020 Rumma & Ko Ltd
 # License: BSD (see file COPYING for details)
 
 # Note that this module may not have a docstring because any
@@ -11,15 +11,13 @@
 #
 #   $ python setup.py test -s tests.PackagesTests
 
-from __future__ import unicode_literals
-
 SETUP_INFO = dict(
     name='lino_mercato',
-    version='20.1.0',
+    version='0.0.1',
     install_requires=['lino_xl'],
     tests_require=['bleach'],
 
-    description="A Lino application for managing tradings",
+    description="A Lino application for connecting employers and their future workers",
     license='BSD-2-Clause',
     include_package_data=True,
     zip_safe=False,
@@ -38,8 +36,6 @@ SETUP_INFO = dict(
   Intended Audience :: System Administrators
   License :: OSI Approved :: BSD License
   Natural Language :: English
-  Natural Language :: French
-  Natural Language :: German
   Operating System :: OS Independent
   Topic :: Database :: Front-Ends
   Topic :: Home Automation
@@ -47,24 +43,17 @@ SETUP_INFO = dict(
 
 SETUP_INFO.update(long_description="""\
 
-Lino mercato is an application for managing services with physical
-on-site presence of the workers.  For organisations where calendar
-entries are the base for writing invoices.  Services can be
-individually scheduled or recurring calendar entries based on
-contracts.  Integrated calendar and contacts.  Automatically generate
-invoices.  Optional functionalities include accounting (payments,
-purchases, general ledger, VAT declarations).
+Lino Mercato is a proof of concept for a company that provides services as a
+broker between companies seeking candidates for a job they need to be done and
+individual humans who are open to job offers.
+
+The project is in standby mode until we find somebody who wants to invest into
+it.
 
 - The central project homepage is http://mercato.lino-framework.org
 
-- German documentation is at http://de.mercato.lino-framework.org/
-
-- For *introductions* and *commercial information* about Lino mercato
+- For *introductions* and *commercial information* about Lino Mercato
   see http://www.saffre-rumma.net
-  
-The name "mercato" originally comes from "prestations de service", the
-French expression for service providements.  It also means "quick" in
-Italian.
 
 """)
 

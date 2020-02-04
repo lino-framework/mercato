@@ -33,7 +33,7 @@ Country = rt.models.countries.Country
 Role = rt.models.contacts.Role
 Partner = rt.models.contacts.Partner
 Person = rt.models.contacts.Person
-Worker = rt.models.contacts.Worker
+Profile = rt.models.mercato.Profile
 User = rt.models.users.User
 UserTypes = rt.models.users.UserTypes
 Company = rt.models.contacts.Company
@@ -68,11 +68,6 @@ def objects():
     yield obj
     settings.SITE.site_config.update(site_company=obj)
 
-    ahmed= Worker(first_name="Ahmed", gender=dd.Genders.male, city=tallinn)
-    yield ahmed
-    maria= Worker(first_name="Maria", gender=dd.Genders.female, city=tartu)
-    yield maria
-
     kw = dict(city=tallinn)
     obj = Company(name="Allways Ltd", **kw)
     yield obj
@@ -98,26 +93,22 @@ def objects():
 
     yield create_user("marta", UserTypes.secretary)
 
-    def person2client(p, **kw):
-        c = mti.insert_child(p, Worker)
+    def person2user(p, **kw):
+        obj = User(
+            user_type=UserTypes.worker, first_name=p.first_name, last_name=p.last_name, partner=p)
         for k, v in kw.items():
-            setattr(c, k, v)
-        c.save()
-        return Worker.objects.get(pk=p.pk)
-
+            setattr(obj, k, v)
+        return obj
 
     count = 0
-    for person in Person.objects.exclude(gender=''):
+    for person in Person.objects.exclude(gender='').exclude(email=''):
         if not person.birth_date:  # not those from humanlinks
             if User.objects.filter(partner=person).count() == 0:
                 if rt.models.contacts.Role.objects.filter(person=person).count() == 0:
                     birth_date = settings.SITE.demo_date(-170 * count - 16 * 365)
-                    client = person2client(person, birth_date=birth_date)
-                    client.full_clean()
-                    client.save()
+                    yield person2user(person, birth_date=birth_date, username=person.email)
 
-    OFFSETS = Cycler(1, 0, 0, 1, 1, 1, 1, 2)
-    START_TIMES = Cycler("8:00", "9:00", "11:00", "13:00", "14:00")
-    DURATIONS = Cycler([Duration(x) for x in ("1:00", "0:30", "2:00", "3:00", "4:00")])
-    WORKERS = Cycler(Worker.objects.all())
-    USERS = Cycler(User.objects.exclude(user_type=""))
+    # OFFSETS = Cycler(1, 0, 0, 1, 1, 1, 1, 2)
+    # START_TIMES = Cycler("8:00", "9:00", "11:00", "13:00", "14:00")
+    # DURATIONS = Cycler([Duration(x) for x in ("1:00", "0:30", "2:00", "3:00", "4:00")])
+    # USERS = Cycler(User.objects.exclude(user_type=""))

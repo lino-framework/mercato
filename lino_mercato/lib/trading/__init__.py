@@ -14,8 +14,8 @@ class Plugin(ad.Plugin):
         m = m.add_menu(self.app_label, self.verbose_name)
         # We use the string representations and not the classes because
         # other installed applications may want to override these tables.
-        for a in ('trading.Offers','trading.MyOffers', 'trading.Needs','trading.MyNeeds'):
-            m.add_action(a)
+        m.add_action('trading.Needs')
+        m.add_action('trading.MyNeeds')
 
         # a = site.models.contacts.WorkersWeekly
         # m.add_instance_action(

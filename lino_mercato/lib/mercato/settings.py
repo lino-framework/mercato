@@ -9,18 +9,18 @@ class Site(Site):
     verbose_name = "Lino Mercato"
     url = "http://mercato.lino-framework.org"
     languages = 'en et'
-    demo_fixtures = 'std all_languages demo demo2'
+    demo_fixtures = 'std few_languages demo demo2'
     user_types_module = "lino_mercato.lib.mercato.user_types"
 
     def get_plugin_configs(self):
         yield super(Site, self).get_plugin_configs()
         yield ('topics', 'menu_group', 'contacts')
         yield ('countries', 'country_code', 'BE')
-        yield ('cv', 'person_model', 'contacts.Worker')
+        yield ('cv', 'person_model', 'mercato.Profile')
 
     def setup_quicklinks(self, user, tb):
         super(Site, self).setup_quicklinks(user, tb)
-        tb.add_action(self.models.contacts.Workers)
+        tb.add_action(self.models.contacts.Persons)
         tb.add_action(self.models.contacts.Companies)
         # tb.add_action(
         #     self.models.courses.Pupils.insert_action,
