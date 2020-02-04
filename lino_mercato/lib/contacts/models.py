@@ -7,6 +7,7 @@ from lino.api import dd, rt, _
 
 from lino_xl.lib.contacts.models import *
 from lino_xl.lib.cv.mixins import BiographyOwner
+from lino.modlib.users.mixins import UserAuthored, My
 
 
 class Partner(Partner, mixins.CreatedModified):
@@ -23,7 +24,7 @@ class Partner(Partner, mixins.CreatedModified):
     hidden_columns = 'created modified'
 
 
-
+# not used
 class PartnerDetail(PartnerDetail):
 
     main = "general contact misc "
@@ -140,13 +141,19 @@ gender email
 #     detail_layout = PersonDetail()
 
 
-class Worker(Person, BiographyOwner):
+class Worker(Person, BiographyOwner, UserAuthored):
     class Meta:
         app_label = 'contacts'
-        verbose_name = _("Worker")
-        verbose_name_plural = _("Workers")
+        verbose_name = _("Profile")
+        verbose_name_plural = _("Profiles")
         abstract = dd.is_abstract_model(__name__, 'Worker')
 
+    def on_create(self, ar):
+        mi = ar.master_instance or ar.get_user()
+        if mi is not None:
+            self.first_name = mi.first_name
+            self.last_name = mi.last_name
+        super(Worker, self).on_create(ar)
 
 class WorkerDetail(PersonDetail):
 
@@ -234,3 +241,7 @@ phone gsm
 #language:20 email:40
 type #id
 """
+
+
+class MyWorkers(My, Workers):
+    pass

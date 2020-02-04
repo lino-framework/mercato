@@ -18,9 +18,14 @@ class Plugin(Plugin):
         m = m.add_menu(self.app_label, self.verbose_name)
         # We use the string representations and not the classes because
         # other installed applications may want to override these tables.
-        for a in ('contacts.Workers', 'contacts.Companies', 'contacts.Persons'):
-            m.add_action(a)
+        m.add_action('contacts.Workers')
+        m.add_action('contacts.Companies')
+        m.add_action('contacts.Persons')
 
-        # a = site.models.contacts.WorkersWeekly
-        # m.add_instance_action(
-        #     a.get_row_by_pk(None, "0"), action=a.default_action, label=_("Workers weekly"))
+        m = m.add_menu("my", _("My menu"))
+        m.add_action('contacts.MyWorkers')
+
+
+    def get_dashboard_items(self, user):
+        if user.authenticated:
+            yield self.site.models.contacts.MyWorkers
