@@ -1,10 +1,10 @@
 .. _mercato:
 
-===========
-Lino mercato
-===========
+============
+Lino Mercato
+============
 
-Welcome to the **Lino mercato** project homepage.
+Welcome to the **Lino Mercato** project homepage.
 
 .. py2rst::
 

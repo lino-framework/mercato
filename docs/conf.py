@@ -13,14 +13,13 @@ from lino_mercato import SETUP_INFO
 extensions = []
 
 from lino.sphinxcontrib import configure
-configure(globals(), 'lino_mercato.projects.noereth.settings.doctests')
+configure(globals(), 'lino_mercato.projects.mercato1.settings.doctests')
 
 extensions += ['lino.sphinxcontrib.logo']
 
 intersphinx_mapping = {}
 from atelier.sphinxconf import interproject
-interproject.configure(
-    globals(), 'atelier etgen lino_book')
+interproject.configure(globals(), 'lino_book')
 intersphinx_mapping['cg'] = ('http://community.lino-framework.org/', None)
 
 # General configuration

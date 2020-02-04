@@ -8,8 +8,8 @@
    :toctree:
 
     mercato
-    producxts
-    contacs
+    products
+    contacts
     trading
 
 

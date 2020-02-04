@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
-# Copyright 2012-2020 Rumma & Ko Ltd
-# This file is part of Lino mercato.
-#
+# Copyright 2020 Rumma & Ko Ltd
+# License: BSD (see file COPYING for details)
 
 """See :ref:`mercato`.
 

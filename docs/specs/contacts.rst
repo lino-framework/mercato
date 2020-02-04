@@ -13,39 +13,3 @@ Contacts
 >>> from lino import startup
 >>> startup('lino_mercato.projects.mercato1.settings.doctests')
 >>> from lino.api.doctest import *
-
-
-.. class:: Worker
-
-    The Django model which represents a worker.
-
-    A MTI child of :class:`Person`
-
-
-20190527
-========
-
-
->>> ba = rt.models.contacts.Workers.detail_action
->>> ut = rt.login('rolf').get_user().user_type
-
->>> ba.get_view_permission(ut)
-True
-
-
-Print templates
-===============
-
-A roster lists planned calendar entries for a given period.
-
-.. xfile:: contacts/Person/roster.weasy.html
-
-    A printed roster for a given *person* (usually a worker).
-
-    Based on :xfile:`weasyprint/base.weasy.html`
-
-.. xfile:: cal/Room/roster.weasy.html
-
-    A printed roster for a given *team*.
-
-    Based on :xfile:`weasyprint/base.weasy.html`

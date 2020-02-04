@@ -1,27 +1,19 @@
-.. include:: /../docs/shared/include/defs.rst
-.. _mercato.changes.2019:
+.. include:: /shared/include/defs.rst
+.. _mercato.changes.2020:
 
-===========================
-Changes 2019 in Lino mercato
-===========================
+============================
+Changes 2020 in Lino Mercato
+============================
 
 .. contents::
   :local:
 
-2019-05-10
+2020-02-04
 ==========
 
-Released Lino mercato 19.5.1 to PyPI.
+Last changes before going to sleep.
 
-2019-04-23
+2020-02-02
 ==========
 
-room (i.e. team) is now configured per journal.
-
-
-
-2019-04-15
-==========
-
-First proof of concept of a calendar view.
-
+First draft version.

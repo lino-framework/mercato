@@ -61,10 +61,16 @@ SETUP_INFO.update(packages=[str(n) for n in """
 lino_mercato
 lino_mercato.lib
 lino_mercato.lib.trading
+lino_mercato.lib.trading.fixtures
+lino_mercato.lib.contacts
+lino_mercato.lib.contacts.fixtures
+lino_mercato.lib.products
 lino_mercato.lib.mercato
+lino_mercato.lib.mercato.fixtures
 lino_mercato.projects
 lino_mercato.projects.mercato1
 lino_mercato.projects.mercato1.settings
+lino_mercato.projects.mercato1.tests
 """.splitlines() if n])
 
 SETUP_INFO.update(message_extractors={
