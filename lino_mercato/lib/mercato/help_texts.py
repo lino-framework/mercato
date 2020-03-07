@@ -5,5 +5,4 @@ from django.utils.translation import ugettext_lazy as _
 
 help_texts = {
     'lino_mercato.lib.mercato.Plugin' : _("""See lino.core.plugin.Plugin."""),
-    'lino_mercato.lib.contacts.Worker' : _("""The Django model which represents a worker."""),
 }
