@@ -26,7 +26,7 @@ The menu
   - Places : Countries, Places
 - Explorer :
   - System : Authorities, User types, User roles, content types
-  - Contacts : Contact Persons, Partners, Interests
+  - Contacts : Contact persons, Partners, Interests
   - Products : Price factors
   - Career : Language knowledges, Trainings, Studies, Job Experiences
 - Site : About
