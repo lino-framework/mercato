@@ -20,7 +20,7 @@ extensions += ['lino.sphinxcontrib.logo']
 intersphinx_mapping = {}
 from atelier.sphinxconf import interproject
 interproject.configure(globals(), 'lino_book')
-intersphinx_mapping['cg'] = ('http://community.lino-framework.org/', None)
+intersphinx_mapping['cg'] = ('https://community.lino-framework.org/', None)
 
 # General configuration
 # ---------------------
