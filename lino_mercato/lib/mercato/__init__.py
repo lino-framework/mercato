@@ -43,5 +43,5 @@ class Plugin(ad.Plugin):
         #m.add_action('mercato.AllClients')
 
     def get_dashboard_items(self, user):
-        if user.authenticated:
+        if user.is_authenticated:
             yield self.site.models.mercato.MyProfiles
