@@ -15,6 +15,7 @@ install:
   - pip install -U setuptools
   - pip install lino-book  # just for intersphinx
   - pip install -e .
+  - pip install atelier
 
 script:
   - inv prep test bd
