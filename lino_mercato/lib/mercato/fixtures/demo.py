@@ -21,13 +21,6 @@ from lino.modlib.users.utils import create_user
 
 AMOUNTS = Cycler("5.00", None, None, "15.00", "20.00", None, None)
 
-from lino.utils.quantities import Duration
-from lino.core.requests import BaseRequest
-from lino_xl.lib.products.choicelists import DeliveryUnits
-from lino_xl.lib.ledger.utils import DEBIT, CREDIT
-from lino_xl.lib.ledger.choicelists import VoucherStates, JournalGroups
-from lino_xl.lib.cal.choicelists import Recurrencies, Weekdays, EntryStates, PlannerColumns
-
 Place = rt.models.countries.Place
 Country = rt.models.countries.Country
 Role = rt.models.contacts.Role
@@ -107,8 +100,3 @@ def objects():
                 if rt.models.contacts.Role.objects.filter(person=person).count() == 0:
                     birth_date = settings.SITE.demo_date(-170 * count - 16 * 365)
                     yield person2user(person, birth_date=birth_date, username=person.email)
-
-    # OFFSETS = Cycler(1, 0, 0, 1, 1, 1, 1, 2)
-    # START_TIMES = Cycler("8:00", "9:00", "11:00", "13:00", "14:00")
-    # DURATIONS = Cycler([Duration(x) for x in ("1:00", "0:30", "2:00", "3:00", "4:00")])
-    # USERS = Cycler(User.objects.exclude(user_type=""))
