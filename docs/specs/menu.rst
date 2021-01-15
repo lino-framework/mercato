@@ -14,7 +14,7 @@ The menu
 >>> from lino.api.doctest import *
 
 
->>> rt.login('robin').show_menu()
+>>> show_menu('robin')
 ... #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF -SKIP
 - Contacts : Persons, Organizations, Profiles, My Profiles
 - Trading : Needs, My needs
