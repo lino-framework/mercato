@@ -29,4 +29,4 @@ The menu
   - Contacts : Contact persons, Partners, Interests
   - Products : Price factors
   - Career : Language knowledges, Trainings, Studies, Job Experiences
-- Site : About
+- Site : About, User sessions
